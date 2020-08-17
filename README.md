@@ -1,0 +1,1 @@
+A simple console rock, paper scissors game made in JavaScript. Need to make a front end.
