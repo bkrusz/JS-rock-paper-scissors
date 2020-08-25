@@ -1,53 +1,44 @@
-<script>
-    function computerPlay() {
-        var comChoiceNum = Math.floor(Math.random() * 2);
-        var comChoice = "";
-        // Rock = 0, Paper = 1, Scissors = 2
-        switch(comChoiceNum) {
-            case 0:
-                comChoice = "Rock";
-                break;
-            case 1:
-                comChoice = "Paper";
-                break;
-            case 2:
-                comChoice = "Scissors";
-        }
-        return comChoice;
-    }
-    function playRound(playerChoice, comChoice) {
-        playerChoice = playerChoice[0].toUpperCase() + playerChoice.slice(1);
-        result = "";
-        if(playerChoice == comChoice) {
-            result = `${playerChoice} and ${comChoice}. It's a tie!`;
-        }
-        if((playerChoice == 'Rock' && comChoice == 'Paper')
-        || (playerChoice == 'Paper' && comChoice == 'Scissors')
-        || (playerChoice == 'Scissors' && comChoice == 'Rock')) {
-            result = `You lose! ${comChoice} beats ${playerChoice}.`;
-        }
-        if((playerChoice == 'Rock' && comChoice == 'Scissors')
-        || (playerChoice == 'Paper' && comChoice == 'Rock')
-        || (playerChoice == 'Scissors' && comChoice == 'Paper')) {
-            result = `You win! ${playerChoice} beats ${comChoice}.`;
-        }
-        return result;
-    }
-    function game() {
-        var score = [0, 0] // [player score, com score]
-        for(let i = 0; i < 5; i++) {
-            playerChoice = prompt('Pick Rock, Paper, or Scissors');
-            comChoice = computerPlay();
-            result = playRound(playerChoice, comChoice);
-            if(result.search('lose') > -1) {
-                score[1]++;
-            }
-            if(result.search('win') > -1) {
-                score[0]++;
-            }
-            console.log(result);
-            console.log(`Player: ${score[0]}    Computer: ${score[1]}`)
-        }
-    }
-    game();
-</script>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Rock, Paper, Scissors</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="title">
+    <h1>Rock, Paper, Scissors</h1>
+  </div>
+  <div class="score-title">
+    <p>Score</p>
+  </div>
+  <div class="score-container">
+    <ul>
+      <li>Player</li>
+      <li id="player-score">0</li>
+    </ul>
+    <ul>
+      <li>Computer</li>
+      <li id="computer-score">0</li>
+    </ul>
+  </div>
+  <div class="controls-container">
+    <p id="instructions">Make your choice</p>
+  </div>
+  <div class="buttons-container">
+    <button class="input-button" id="rock">Rock</button>
+    <button class="input-button" id="paper">Paper</button>
+    <button class="input-button" id="scissors">Scissors</button>
+  </div>
+  <div class="result">
+    <p id="result"></p>
+  </div>
+  <div class="replay hide">
+    <button id="replay">Replay</button>
+  </div>
+  <script src="rps.js"></script>
+</body>
+
+</html>
